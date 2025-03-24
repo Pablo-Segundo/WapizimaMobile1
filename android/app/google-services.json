@@ -1,0 +1,54 @@
+{
+    "project_info": {
+      "project_number": "120031662204",
+      "project_id": "ecommerce-340216",
+      "storage_bucket": "ecommerce-340216.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:120031662204:android:b4f177bf87bbcfb03539f9",
+          "android_client_info": {
+            "package_name": "com.wapizimamobile"
+          }
+        },
+        "oauth_client": [
+          {
+            "client_id": "120031662204-0b0q2nkh50v9kblcfud4lcv7mlplm3mh.apps.googleusercontent.com",
+            "client_type": 1,
+            "android_info": {
+              "package_name": "com.wapizimamobile",
+              "certificate_hash": "16709cf8db51452655e91292df99f6fbb51cbd6a"
+            }
+          },
+          {
+            "client_id": "120031662204-qr0c9vbm5e0cvm10seu32s170id043q2.apps.googleusercontent.com",
+            "client_type": 3
+          }
+        ],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDnxqYSaqWF6OupWvwFq-vffVq7Te9byF0"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": [
+              {
+                "client_id": "120031662204-98tq7nhkagbu853f2ua7tp0tk1p34b18.apps.googleusercontent.com",
+                "client_type": 3
+              },
+              {
+                "client_id": "120031662204-65a746lgu2fe79h9isota3qn7utgkgtu.apps.googleusercontent.com",
+                "client_type": 2,
+                "ios_info": {
+                  "bundle_id": "org.reactjs.native.example.EccomerceWap"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }
