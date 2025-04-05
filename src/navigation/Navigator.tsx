@@ -12,9 +12,17 @@ import {LoadingScreen} from '../screens/LoadingScreen';
 import {MaintainmentScreen} from '../screens/Maintainment';
 import {CommonActions, useNavigation} from '@react-navigation/native';
 import {SearchCart} from '../components/header/SearchCart';
-import { LogLevel } from 'react-native-reanimated/lib/typescript/logger';
+import {LogLevel} from 'react-native-reanimated/lib/typescript/logger';
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
+import {SearchScreen} from '../screens/SearchScreen';
+import {ForgotPasswordScreen} from '../screens/auth/ForgotPasswordScreen';
+import ProductScreen from '../screens/products/ProductScreen';
+
+import { BrandScreen } from '../screens/BrandScreen';
+import CategoryCard from '../components/CategoryCard';
+import { CategoryScreen } from '../screens/CategoryScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -23,7 +31,10 @@ const Navigator = ({notify}: any) => {
   const {status, maintainment} = useContext(AuthContext);
   const {loadCart} = useContext(CartContext);
   const {checkNotification} = usePermissions();
-
+  
+  console.log('====================================');
+  console.log(status, 'status');
+  console.log('====================================');
   useEffect(() => {
     // loadCart();
     checkNotification();
@@ -71,17 +82,89 @@ const Navigator = ({notify}: any) => {
       screenOptions={{
         headerShown: false,
       }}>
-      {/* {status === 'unauthorized' && ( */}
-      <>
-        {/* <Stack.Screen name="Home" component={WelcomeScreen} />
-      <Stack.Screen name="VerifyCode" component={VerifyCodeScreen} /> */}
+      {status === 'authwithoutphone' && (
+        <>
+          <Stack.Screen
+            name="VerifyPhoneNumber"
+            component={VerifyPhoneNumberScreen}
+          />
+          <Stack.Screen name="VerifyCode" component={VerifyCodeScreen} />
+        </>
+      )}
 
-        <Stack.Screen name="Drawers" component={Drawers} />
-        <Stack.Screen name="SearchCart" component={SearchCart} />
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-      </>
-      {/* )} */}
+    
+      {/* <Stack.Screen name="Home" component={WelcomeScreen} /> */}
+      {/* {status === 'unauthorized' && (
+        <>
+         
+          <Stack.Screen name="Splash" component={Splash} /> */}
+           <Stack.Screen name="Drawers" component={Drawers} />
+          <Stack.Screen
+            name="Search"
+            component={SearchScreen}
+            options={{
+              title: 'Buscador',
+              headerShown: true,
+              animation: 'slide_from_bottom',
+              animationTypeForReplace: 'push',
+            }}
+          />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen
+            name="ForgotPasswordScreen"
+            component={ForgotPasswordScreen}
+          />
+          <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+          <Stack.Screen
+            name="Product"
+            component={ProductScreen}
+            options={{
+              headerShown: true,
+            }}
+          />
+     
+           <Stack.Screen
+            name="Marca"
+            component={BrandScreen}
+            options={{
+              headerShown: true,
+              headerTransparent: false,
+              headerRight: props => <SearchCart {...navigation} />,
+
+            }}
+          />
+            <Stack.Screen
+            name="Categoria"
+            component={CategoryScreen}
+            options={{
+              headerShown: true,
+              headerTransparent: false,
+              headerRight: props => <SearchCart {...navigation} />,
+            }}
+          />
+
+        {/* </>
+      )} */}
+
+      {status === 'authenticated' && (
+        <>
+          <Stack.Screen name="Splash" component={Splash} />
+          <Stack.Screen
+            name="Search"
+            component={SearchScreen}
+            options={{
+              title: 'Buscador',
+              headerShown: true,
+              animation: 'slide_from_bottom',
+              animationTypeForReplace: 'push',
+            }}
+          />
+
+          <Stack.Screen name="Drawers" component={Drawers} />
+        </>
+      )}
+
+      {/* <Stack.Screen name="SearchCart" component={SearchCart} /> */}
     </Stack.Navigator>
   );
 };

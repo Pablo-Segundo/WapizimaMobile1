@@ -1,9 +1,21 @@
-import { View, Text, ImageBackground, StyleSheet } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
+import { NativeStackScreenProps } from 'react-native-screens/lib/typescript/native-stack/types';
+import { Category } from '../interfaces/CategoryInterfaces';
 
-const CategoryCard = ({ category }: any) => {
+interface Props extends NativeStackScreenProps<any, any> 
+{ 
+  category: Category;
+}
+
+export const CategoryCard = ({category,navigation, route}: Props) => {
   return (
     <View style={styles.cardContainer}>
+        <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() =>
+          navigation.navigate('Categoria',category )
+        }>
       <ImageBackground
         source={{ uri: category.imagesMobile['400x400'], cache: 'force-cache' }}
         style={styles.imageBackground}
@@ -17,6 +29,7 @@ const CategoryCard = ({ category }: any) => {
           <Text style={styles.categoryText}>{category.name}</Text>
         </View>
       </ImageBackground>
+      </TouchableOpacity>
     </View>
   );
 };

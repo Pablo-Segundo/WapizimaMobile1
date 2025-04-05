@@ -3,9 +3,9 @@ import React from 'react';
 
 const { width } = Dimensions.get('window');
 
-const CardBrands = ({ brand, onPress }: any) => {
+const CardBrands = ({ brand, onPress , navigation}: any) => {
   return (
-     <TouchableOpacity onPress={onPress}>
+     <TouchableOpacity  onPress={() => navigation.navigate('Marca', brand)}>
      <View style={styles.cardContainer}>
      
       <ImageBackground

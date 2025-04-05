@@ -1,7 +1,9 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const baseURL = 'https://api.wapizima.com/api';
+//  const baseURL = 'http://192.168.1.27:3000/api';
+//const baseURL = 'https://testapi.wapizima.com/api';
+ const baseURL = 'https://api.wapizima.com/api';
 
 const API = axios.create({ baseURL });
 

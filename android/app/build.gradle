@@ -86,7 +86,7 @@ android {
         applicationId "com.wapizimamobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 67
         versionName "1.0"
     }
     signingConfigs {

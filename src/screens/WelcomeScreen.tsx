@@ -14,7 +14,10 @@ import {
   widthPercentageToDP,
 } from 'react-native-responsive-screen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const WelcomeScreen = () => {
   const {getBrands, brands} = useContext(BrandContext);
@@ -35,9 +38,9 @@ const WelcomeScreen = () => {
   return (
     <>
       <ScrollView>
-      <View style={styles.customStack}>
-      <View style={styles.headerIcons}>
-        {/* Icono de Filtro */}
+        {/* <View style={styles.customStack}> */}
+        {/* <View style={styles.headerIcons}>
+      
         <Ionicons
           name="filter-outline"
           size={30}
@@ -45,7 +48,7 @@ const WelcomeScreen = () => {
           onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
         />
 
-        {/* Logo Centrado */}
+       
         <View style={styles.logoContainer}>
           <Image
             style={styles.logo}
@@ -54,13 +57,13 @@ const WelcomeScreen = () => {
           />
         </View>
 
-        {/* Iconos de Búsqueda y Carrito */}
+  
         <View style={styles.rightIcons}>
           <Ionicons
             name="search-outline"
             size={30}
             color="white"
-            onPress={() => navigation.navigate('SearchCart')}
+            onPress={() => navigation.navigate('Search')}
           />
           <Ionicons
             name="cart-outline"
@@ -69,8 +72,8 @@ const WelcomeScreen = () => {
             onPress={() => navigation.navigate('CartScreen')}
           />
         </View>
-      </View>
-    </View>
+      </View> */}
+        {/* </View> */}
 
         <View>
           <View style={styles.cardContainer}>
@@ -81,10 +84,15 @@ const WelcomeScreen = () => {
           </View>
 
           <FlatList
+            showsHorizontalScrollIndicator={false}
+            nestedScrollEnabled
             data={brands}
-            horizontal
+            horizontal={true}
+            scrollEnabled
             keyExtractor={item => item._id}
-            renderItem={({item}) => <CardBrands brand={item} />}
+            renderItem={({item, index}) => (
+              <CardBrands brand={item} navigation={navigation}  />
+            )}
           />
         </View>
 
@@ -96,13 +104,13 @@ const WelcomeScreen = () => {
             </Text>
           </View>
 
-          <View style={styles.cardContainer}>
-            <ProductsList
-              products={products}
-              navigation={navigation}
-              buscar={false}
-            />
-          </View>
+          {/* <View style={styles.cardContainer}> */}
+          <ProductsList
+            products={products}
+            navigation={navigation}
+            buscar={false}
+          />
+          {/* </View> */}
         </View>
 
         <View>
@@ -117,7 +125,8 @@ const WelcomeScreen = () => {
             data={categories}
             numColumns={columns}
             keyExtractor={item => item._id}
-            renderItem={({item}) => <CategoryCard category={item} />}
+            renderItem={({ item }) =>
+              <CategoryCard category={item} navigation={navigation} route={undefined} />}
             contentContainerStyle={{alignItems: 'center'}}
           />
         </View>
@@ -155,7 +164,7 @@ const styles = StyleSheet.create({
     height: 30,
     color: 'white',
   },
- 
+
   //--------------------
   customStack: {
     width: '100%',
@@ -177,8 +186,6 @@ const styles = StyleSheet.create({
   logoContainer: {
     // flex: 1,
     alignItems: 'center',
-    
-
   },
   logo: {
     width: wp('40%'),

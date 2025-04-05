@@ -103,13 +103,18 @@ export const AuthProvider = ({ children }: any) => {
   }, []);
 
   const validateToken = async () => {
+    console.log('(NOBRIDGE) LOG: Iniciando validación del token');
     const token = await AsyncStorage.getItem('token');
-    
+    console.log('(NOBRIDGE) LOG: Token obtenido', token);
+  
     if (!token) {
+      console.log('(NOBRIDGE) LOG: No hay token, usuario no autenticado');
       return dispatch({ type: 'notAuthenticated' });
     }
     try {
       const { data } = await Wapizima.get('/auth');
+      console.log('(NOBRIDGE) LOG: Respuesta de /auth', data);
+      
       await AsyncStorage.setItem('token', data.token);
       dispatch({
         type: 'signUp',
@@ -119,12 +124,13 @@ export const AuthProvider = ({ children }: any) => {
           cart: false,
         },
       });
-    }
-    catch (error: any) {
+    } catch (error: any) {
+      console.log('(NOBRIDGE) LOG: Error en /auth', error);
       dispatch({ type: 'notAuthenticated' });
       await AsyncStorage.removeItem('token');
     }
   };
+  
   const getMaintainment = async () => {
     try {
       const { data } = await Wapizima.get('/administrable/maintainment');
